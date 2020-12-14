@@ -2,6 +2,7 @@ import cv2
 from PIL import Image
 import generateqr as gqr
 
+#detect and store locations for QR codes in input template using shape recognition
 def find_squares():
 
     global squares_sort
@@ -33,11 +34,10 @@ def find_squares():
     ind = np.lexsort((squares[:,1],squares[:,0])) 
     squares_sort = squares[ind]
 
-
+#generate a qr code and place onto an empty square on the sticker template
 def place_qr_codes():
 
     template_qr = Image.open("grollz/template300.png")
-    template_qr_clear = Image.open("grollz/template300.png")
     gqr.initialise()
     pages = gqr.links.shape[0]//squares_sort.shape[0]
     page = 0
