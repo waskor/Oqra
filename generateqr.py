@@ -1,6 +1,5 @@
 import qrcode
 import pandas as pd
-import cProfile
 
 def initialise():
 
@@ -28,9 +27,3 @@ def generate_qr(i):
 
     qr.data_list.clear()
 
-
-# def main():
-#     initialise()
-#     generate_qr(0)
-
-#cProfile.run('main()')
