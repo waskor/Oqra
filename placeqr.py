@@ -63,16 +63,6 @@ def place_qr_codes():
 
             sq = 1
 
-        elif page == pages and i != (gqr.links.shape[0]-1):
-            
-            gqr.generate_qr(i)
-            gqr.qrimg = gqr.qrimg.rotate(270)
-            gqr.qrimg = gqr.qrimg.resize((squares_sort[sq,3], squares_sort[sq,2]))
-            
-            template_qr.paste(gqr.qrimg, (squares_sort[sq,0], squares_sort[sq,1])) 
-
-            sq += 1
-
         elif i == (gqr.links.shape[0]-1):
             
             gqr.generate_qr(i)
