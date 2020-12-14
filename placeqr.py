@@ -1,12 +1,6 @@
 import cv2
-import numpy as np
 from PIL import Image
-import glob
 import generateqr as gqr
-import time 
-import cProfile
-
-start_time = time.time()
 
 def find_squares():
 
@@ -103,32 +97,10 @@ def place_qr_codes():
             sq += 1
 
 def main():
-    
     find_squares()
     place_qr_codes()
 
- 
-
-
 if __name__ == '__main__':
-    #cProfile.run('main()')
+
     main()
 
-print("--- %s seconds ---" % (time.time() - start_time))
-
-# def place_qr_codes(template):
-
-    # template_qr = Image.open("grollz/template_hq.png")
-    # i = 0
-
-    # #for f in glob.iglob("C:/Users/Was/Documents/Python/grollz/qrcodes/*.png"):
-    # for i in range(8)
-
-    #     qr = Image.open(f)
-    #     #qr = qr.rotate(270)
-    #     qr = qr.resize((squares_sort[i,3], squares_sort[i,2]))
-        
-    #     template_qr.paste(qr, (squares_sort[i,0], squares_sort[i,1])) 
-    #     i += 1
-
-    # template_qr.save('grollz/templateqr.png')
