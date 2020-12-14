@@ -3,11 +3,11 @@ from PIL import Image
 import generateqr as gqr
 
 #detect and store locations for QR codes in input template using shape recognition
-def find_squares():
+def find_squares(templatefile):
 
     global squares_sort
 
-    template = cv2.imread("grollz/template300.png")
+    template = cv2.imread(templatefile)
 
     squares_list = []
 
@@ -35,9 +35,9 @@ def find_squares():
     squares_sort = squares[ind]
 
 #generate a qr code and place onto an empty square on the sticker template
-def place_qr_codes():
+def place_qr_codes(templatefile):
 
-    template_qr = Image.open("grollz/template300.png")
+    template_qr = Image.open(templatefile)
     gqr.initialise()
     pages = gqr.links.shape[0]//squares_sort.shape[0]
     page = 0
@@ -48,12 +48,12 @@ def place_qr_codes():
         if i % squares_sort.shape[0] == 0 and i != 0:
 
 
-            filename = "grollz/stickers/templateqr_{}.png".format(page)
-            template_qr.save(filename)
+            fileout = "grollz/stickers/templateqr_{}.png".format(page)
+            template_qr.save(fileout)
             page += 1
             sq = 0
 
-            template_qr = Image.open("grollz/template300.png")
+            template_qr = Image.open(templatefile)
 
             gqr.generate_qr(i)
             gqr.qrimg = gqr.qrimg.rotate(270)
@@ -71,7 +71,8 @@ def place_qr_codes():
             
             template_qr.paste(gqr.qrimg, (squares_sort[sq,0], squares_sort[sq,1])) 
             filename = "grollz/stickers/templateqr_{}.png".format(page)
-            template_qr.save(filename)
+            template_qr.save(fileout)
+            #gqr.links.to_csv("links2.csv")
 
         else:
             gqr.generate_qr(i)
@@ -83,8 +84,10 @@ def place_qr_codes():
             sq += 1
 
 def main():
-    find_squares()
-    place_qr_codes()
+    templatefile = "grollz/template300.png"
+    find_squares(templatefile)
+    place_qr_codes(templatefile)
+    
 
 if __name__ == '__main__':
 
