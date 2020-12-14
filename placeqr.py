@@ -32,10 +32,6 @@ def find_squares():
     squares = np.array(squares_list)
     ind = np.lexsort((squares[:,1],squares[:,0])) 
     squares_sort = squares[ind]
-    cv2.imwrite('squares.jpg', template)
-    
-
-#template = cv2.resize(template, (0,0), fx=0.15, fy=0.15) 
 
 
 def place_qr_codes():
