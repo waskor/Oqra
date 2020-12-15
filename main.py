@@ -12,8 +12,6 @@ from PIL import Image
 import placeqr as pqr
 import generateqr as gqr
 
-time_limit = 100
-
 class External(QThread):
 
     countchange = pyqtSignal(int)
