@@ -9,7 +9,6 @@ import sys
 import numpy as np
 from PIL import Image
 
-import placeqr as pqr
 import generateqr as gqr
 
 
