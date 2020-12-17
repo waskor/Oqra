@@ -9,6 +9,7 @@ import sys
 import numpy as np
 from PIL import Image
 
+import placeqr as pqr
 import generateqr as gqr
 
 
@@ -110,8 +111,7 @@ class External(QThread):
                 
                 self.sq += 1
 
-
-
+                
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -127,16 +127,15 @@ class MainWindow(QMainWindow):
         self.progressBar.setMaximum(100)
         self.checkboxall.setDisabled(True)
         self.checkboxcustom.setDisabled(True)
-
         
     def browsepng(self):
 
         filename = QFileDialog.getOpenFileName(self, 'Load template', "C:/", "PNG Files (*.png)")
-        self.browsepath1.setText(filename[0])
 
-        self.templatefile = filename[0]
+        if filename[0].endswith('.png'):
 
-        if self.templatefile.endswith('.png'):
+            self.browsepath1.setText(filename[0])
+            self.templatefile = filename[0]
             self.checkboxall.setDisabled(False)
             self.checkboxcustom.setDisabled(False)
             self.loadingline.setText('')
@@ -144,14 +143,13 @@ class MainWindow(QMainWindow):
             self.loadingline.setText('Please select a PNG template file.')
 
     def browsecsv(self):
-        self.loadingline.setText('')
 
         filename = QFileDialog.getOpenFileName(self, 'Load links', "C:/", "CSV Files (*.csv)")
-        self.browsepath2.setText(filename[0])
 
-        self.linksfile = filename[0]
+        if filename[0].endswith('.csv'):
 
-        if self.linksfile.endswith('.csv'):
+            self.browsepath2.setText(filename[0])
+            self.linksfile = filename[0]
             self.checkboxall.setDisabled(False)
             self.checkboxcustom.setDisabled(False)
             self.loadingline.setText('')
@@ -250,6 +248,7 @@ class MainWindow(QMainWindow):
 if __name__ == "__main__":
 
     app = QApplication(sys.argv)
+    app.setStyle("Fusion")
     mainwindow = MainWindow()
     mainwindow.show()
     sys.exit(app.exec_())
