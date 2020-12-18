@@ -9,9 +9,7 @@ import sys
 import numpy as np
 from PIL import Image
 
-import placeqr as pqr
 import generateqr as gqr
-
 
 class External(QThread):
 
@@ -115,7 +113,7 @@ class External(QThread):
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        loadUi("grollz/stiqr.ui",self)
+        loadUi("stiqr.ui",self)
         self.browse1.clicked.connect(self.browsepng)
         self.browse2.clicked.connect(self.browsecsv)
         self.browse3.clicked.connect(self.browsefolder)

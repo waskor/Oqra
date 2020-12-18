@@ -1,12 +1,13 @@
 import qrcode
 import pandas as pd
+import cProfile
 
-def initialise():
+def initialise(linksfile):
 
     global links, qr
 
-    filename = "grollz/links.csv"
-    links = pd.read_csv(filename)
+    links = pd.read_csv(linksfile)
+    links['used'] = '0'
 
     qr = qrcode.QRCode(
     None,
@@ -26,4 +27,4 @@ def generate_qr(i):
     qrimg = qr.make_image(fill_color="black", back_color="white")
 
     qr.data_list.clear()
-
+    links.at[i,'used'] = '1'
