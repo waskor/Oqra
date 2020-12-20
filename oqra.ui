@@ -32,8 +32,8 @@
    <string>Oqra</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../../Python/grollz/logo2.png</normaloff>../../Python/grollz/logo2.png</iconset>
+   <iconset resource="images.qrc">
+    <normaloff>:/images/img/logo2.png</normaloff>:/images/img/logo2.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QProgressBar" name="progressBar">
@@ -313,7 +313,7 @@
   </action>
  </widget>
  <resources>
-  <include location="../../Python/grollz/test.qrc"/>
+  <include location="images.qrc"/>
  </resources>
  <connections/>
 </ui>

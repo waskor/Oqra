@@ -14,8 +14,8 @@
    <string>About</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../../Python/grollz/logo2.png</normaloff>../../Python/grollz/logo2.png</iconset>
+   <iconset resource="images2.qrc">
+    <normaloff>:/images/img/logo2.png</normaloff>:/images/img/logo2.png</iconset>
   </property>
   <widget class="QFrame" name="frame">
    <property name="geometry">
@@ -66,13 +66,15 @@ waskor@gmail.com</string>
     <string/>
    </property>
    <property name="pixmap">
-    <pixmap>../../Python/grollz/oqrafull.png</pixmap>
+    <pixmap resource="images2.qrc">:/images/img/oqrafull.png</pixmap>
    </property>
    <property name="scaledContents">
     <bool>true</bool>
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="images2.qrc"/>
+ </resources>
  <connections/>
 </ui>

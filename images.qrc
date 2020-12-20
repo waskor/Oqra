@@ -1,0 +1,6 @@
+<RCC>
+  <qresource prefix="images">
+    <file>img/oqrafull.png</file>
+    <file>img/logo2.png</file>
+  </qresource>
+</RCC>
