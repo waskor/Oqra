@@ -7,7 +7,7 @@ def initialise(linksfile):
     global links, qr
 
     links = pd.read_csv(linksfile)
-    links['used'] = '0'
+    links['status'] = 'unused'
 
     qr = qrcode.QRCode(
     None,
@@ -27,4 +27,4 @@ def generate_qr(i):
     qrimg = qr.make_image(fill_color="black", back_color="white")
 
     qr.data_list.clear()
-    links.at[i,'used'] = '1'
+    links.at[i,'status'] = 'used'
