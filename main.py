@@ -41,7 +41,6 @@ class External(QThread):
         #self.ret, self.thresh = cv2.threshold(self.templategray,170,255,cv2.THRESH_BINARY_INV)
         self.thresh = cv2.adaptiveThreshold(self.templategray,255,cv2.ADAPTIVE_THRESH_GAUSSIAN_C,cv2.THRESH_BINARY_INV,11,2)
 
-        cv2.imwrite('tempgray.jpg', self.thresh)
         self.contours, self.hierarchy = cv2.findContours(self.thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
 
         for c in self.contours:    
@@ -121,7 +120,7 @@ class External(QThread):
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        loadUi("stiqr.ui",self)
+        loadUi("oqra.ui",self)
         self.browse1.clicked.connect(self.browsepng)
         self.browse2.clicked.connect(self.browsecsv)
         self.browse3.clicked.connect(self.browsefolder)
@@ -157,6 +156,7 @@ class MainWindow(QMainWindow):
         self.checkboxcustom.setChecked(False)
         self.progressBar.setValue(0)
         self.loadingline.setText('')
+        self.customline.setText('')
     
     def browsepng(self):
 
@@ -230,7 +230,9 @@ class MainWindow(QMainWindow):
         self.progressBar.setValue(value)
 
     def done(self):
+
         self.timetaken = (time.time() - self.start_time)
+
         if int(self.timetaken) > 60:
             self.minutes = int(self.timetaken/60)
             self.seconds = int(self.timetaken%60)
@@ -244,6 +246,7 @@ class MainWindow(QMainWindow):
             self.timetaken = "{:.2f}".format(self.timetaken)
             self.donetext = 'Complete! Time taken: ' + str(self.timetaken) + ' seconds'
             self.loadingline.setText(self.donetext)
+
         self.runbutton.setDisabled(False)
 
     def execute(self):
