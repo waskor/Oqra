@@ -121,7 +121,7 @@ class External(QThread):
 
                     gqr.generate_qr(i)
                     self.qr_rectangle = fitz.Rect(self.squares_sort[self.sq,0],self.squares_sort[self.sq,1],self.squares_sort[self.sq,0]+self.squares_sort[self.sq,2],self.squares_sort[self.sq,1]+self.squares_sort[self.sq,3])
-                    self.pix = fitz.Pixmap('qr.png')
+                    self.pix = fitz.Pixmap(gqr.buf)
                     self.pdfpage.insertImage(self.qr_rectangle, pixmap = self.pix, overlay=True)
                     #gqr.qrimg = gqr.qrimg.rotate(270)
                     #gqr.qrimg = gqr.qrimg.resize((self.squares_sort[self.sq,3], self.squares_sort[self.sq,2] 
@@ -132,7 +132,7 @@ class External(QThread):
                     
                     gqr.generate_qr(i)
                     self.qr_rectangle = fitz.Rect(self.squares_sort[self.sq,0],self.squares_sort[self.sq,1],self.squares_sort[self.sq,0]+self.squares_sort[self.sq,2],self.squares_sort[self.sq,1]+self.squares_sort[self.sq,3])
-                    self.pix = fitz.Pixmap('qr.png')
+                    self.pix = fitz.Pixmap(gqr.buf)
                     self.pdfpage.insertImage(self.qr_rectangle, pixmap = self.pix, overlay=True)
 
                     self.fileout = str(mainwindow.outputfolder) + "/page{}.pdf".format(self.page+1)
@@ -140,15 +140,15 @@ class External(QThread):
 
                     self.links_unused = gqr.links[gqr.links['status'] == 'unused'] 
                     self.links_unused.to_csv('unused_links.csv',index = False)
-                    #gqr.links.to_csv('all_links.csv', index = False)
+                    gqr.links.to_csv('all_links.csv', index = False)
 
                 else:
 
                     gqr.generate_qr(i)
                     self.qr_rectangle = fitz.Rect(self.squares_sort[self.sq,0],self.squares_sort[self.sq,1],self.squares_sort[self.sq,0]+self.squares_sort[self.sq,2],self.squares_sort[self.sq,1]+self.squares_sort[self.sq,3])
-                    self.pix = fitz.Pixmap('qr.png')
+                    self.pix = fitz.Pixmap(gqr.buf)
                     self.pdfpage.insertImage(self.qr_rectangle, pixmap = self.pix, overlay=True)
-                   #gqr.qrimg = gqr.qrimg.rotate(270)
+                    #gqr.qrimg = gqr.qrimg.rotate(270)
                     #gqr.qrimg = gqr.qrimg.resize((self.squares_sort[self.sq,3], self.squares_sort[self.sq,2] 
 
                     self.sq += 1
